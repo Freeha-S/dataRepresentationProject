@@ -40,7 +40,8 @@ Shop database base has three tables
    	FOREIGN KEY (Customer_id)
    	REFERENCES Customer(CustomerID)
       	ON DELETE RESTRICT
-   );  ~~~~  
+   ); 
+~~~~  
 
 ~~~~CREATE TABLE Users(
 	userID INT NOT NULL AUTO_INCREMENT,
@@ -48,7 +49,7 @@ Shop database base has three tables
    	password varchar(250) DEFAULT NULL,
    	PRIMARY KEY (userID)
    	);
-	~~~~
+~~~~
 - customer
 - orders
 - users
