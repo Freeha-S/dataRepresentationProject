@@ -20,7 +20,8 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
 Shop database base has three tables
 ### Code Block
 
-~~~~ CREATE TABLE Customer(
+~~~~sql
+CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
    	FirstName VARCHAR(250) DEFAULT NULL,
 	LastName VARCHAR(250) DEFAULT NULL,
@@ -31,7 +32,8 @@ Shop database base has three tables
   );
 ~~~~
 
-~~~~ CREATE TABLE Orders(
+~~~~sql
+CREATE TABLE Orders(
 	OrderId INT NOT NULL AUTO_INCREMENT,
 	Product VARCHAR(250) DEFAULT NULL,
 	OrderDate varchar(250) DEFAULT '2020-12-31',
@@ -45,7 +47,8 @@ Shop database base has three tables
    ); 
 ~~~~  
 
-~~~~CREATE TABLE Users(
+~~~~sql
+CREATE TABLE Users(
 	userID INT NOT NULL AUTO_INCREMENT,
    	name VARCHAR(250) DEFAULT NULL,
    	password varchar(250) DEFAULT NULL,
@@ -54,8 +57,7 @@ Shop database base has three tables
 ~~~~
 - customer
 - orders
-- users
-user table is used for authentication
+- users (user table is used for authentication)<br>
 usedID: admin 
 password: admin
 used to login the app
