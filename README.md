@@ -19,7 +19,8 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
 <br>
 Shop database base has three tables
 ### Code Block
-~~~~CREATE TABLE Customer(
+
+~~~~ CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
    	FirstName VARCHAR(250) DEFAULT NULL,
 	LastName VARCHAR(250) DEFAULT NULL,
@@ -29,7 +30,8 @@ Shop database base has three tables
    	PRIMARY KEY (CustomerID)
   );
 ~~~~
-~~~~CREATE TABLE Orders(
+
+~~~~ CREATE TABLE Orders(
 	OrderId INT NOT NULL AUTO_INCREMENT,
 	Product VARCHAR(250) DEFAULT NULL,
 	OrderDate varchar(250) DEFAULT '2020-12-31',
