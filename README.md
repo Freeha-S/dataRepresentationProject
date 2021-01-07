@@ -6,14 +6,14 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
 
 ## Repository
 gitignore
-README.md
-LICENSE
-ShopDAO.py
-dbconfiguration.py
-initdb.sql
-requirements.txt
-server.py
-templates
+- README.md
+- LICENSE
+- ShopDAO.py
+- dbconfiguration.py
+- initdb.sql
+- requirements.txt
+- server.py
+- templates
   - index.html
   - login.html
 Shop database base has three tables
@@ -42,7 +42,7 @@ MySQL.
 In this repository.
 Click on the green button "Code". Select "Clone with HTTPS". Copy the URL.
 navigate to your preferred directory (folder) where you like to keep the copy .
-Type git clone ( this is the URL you have copied).
+Type git clone  https://github.com/Freeha-S/dataRepresentationProject.git ( this is the URL you have copied).
 The repository is now installed.
 To install the necessary packages in the same folder/directory excecute the following: pip install -r requirements.txt
 Verify that the packages have been installed using command: pip freeze.
