@@ -2,7 +2,9 @@
 ## Lecturer: Andrew Beatty
 ## Student: Freha Saleem
 The purpose of this repository is to implement a Web Appliation as follows:
-A basic Flask server that has a REST API, (to perform CRUD operations) two database table and Accompanying web interface, using AJAX calls, to perform these CRUD operations With authorization (logging in). hosted online (pythonanywhere)
+- A basic Flask server that has a REST API, (to perform CRUD operations) on two database table and accompanying web interface. Using AJAX calls, to perform these CRUD operations with authorization (logging in). hosted online at (pythonanywhere)
+## Pythonanywhere link:
+Link for app: http://freeha123.pythonanywhere.com/
 
 ## Repository
 - gitignore
@@ -17,9 +19,9 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
   - index.html
   - login.html
 <br>
-Shop database base has three tables
-### Code Block
+### Shop database base has three tables
 
+- Customer
 ~~~~sql
 CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +33,7 @@ CREATE TABLE Customer(
    	PRIMARY KEY (CustomerID)
   );
 ~~~~
-
+- Orders
 ~~~~sql
 CREATE TABLE Orders(
 	OrderId INT NOT NULL AUTO_INCREMENT,
@@ -46,7 +48,7 @@ CREATE TABLE Orders(
       	ON DELETE RESTRICT
    ); 
 ~~~~  
-
+- Users
 ~~~~sql
 CREATE TABLE Users(
 	userID INT NOT NULL AUTO_INCREMENT,
@@ -55,11 +57,9 @@ CREATE TABLE Users(
    	PRIMARY KEY (userID)
    	);
 ~~~~
-- customer
-- orders
-- users (user table is used for authentication)<br>
-usedID: admin 
-password: admin
+Users table is used for authentication<br>
+**usedID: admin **
+**password: admin**
 used to login the app
 where
 - View customers,Orders list from the database
