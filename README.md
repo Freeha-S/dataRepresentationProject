@@ -18,7 +18,8 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
   - login.html
 <br>
 Shop database base has three tables
-CREATE TABLE Customer(
+# Code Block #
+~~~~CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
    	FirstName VARCHAR(250) DEFAULT NULL,
 	LastName VARCHAR(250) DEFAULT NULL,
@@ -27,8 +28,8 @@ CREATE TABLE Customer(
    	PhoneNumber INT DEFAULT NULL,
    	PRIMARY KEY (CustomerID)
   );
-
-CREATE TABLE Orders(
+~~~~
+~~~~CREATE TABLE Orders(
 	OrderId INT NOT NULL AUTO_INCREMENT,
 	Product VARCHAR(250) DEFAULT NULL,
 	OrderDate varchar(250) DEFAULT '2020-12-31',
@@ -39,15 +40,15 @@ CREATE TABLE Orders(
    	FOREIGN KEY (Customer_id)
    	REFERENCES Customer(CustomerID)
       	ON DELETE RESTRICT
-   );    
+   );  ~~~~  
 
-
-CREATE TABLE Users(
+~~~~CREATE TABLE Users(
 	userID INT NOT NULL AUTO_INCREMENT,
    	name VARCHAR(250) DEFAULT NULL,
    	password varchar(250) DEFAULT NULL,
    	PRIMARY KEY (userID)
    	);
+	~~~~
 - customer
 - orders
 - users
