@@ -18,7 +18,7 @@ Link for app: http://freeha123.pythonanywhere.com/
 - templates
   - index.html
   - login.html
-<br>
+
 ### Shop database base has three tables
 
 - Customer
@@ -61,15 +61,16 @@ Users table is used for authentication<br>
 **usedID: admin **
 **password: admin**
 used to login the app
-where
-- View customers,Orders list from the database
-- Create a new customer , new order(add to the database)
-- Update existing customer /order
-- delete existing customer/order
-in order table customer ID is used as key that connect both tables
+where you can
+- View (Customers/Orders)list from the database
+- Create a new (Customer/Order) -- add to the database
+- Update existing (Customer /Order)
+- Delete existing (Customer/Order)
+<br/>
+In Orders table CustomerID is used as key that connect both tables
 
-Running this web application on your local machine:
-Prequisites
+### To Run this web application on your local machine:
+#### Prequisites
 - anaconda installation Anaconda.
 - MySQL.
 
@@ -89,6 +90,7 @@ The repository is now installed.
 - Navigate to the the folder where you cloned this repository.
 - In terminal execute this command: python server.py
 - In your browser navigate to http://127.0.0.1:5000/
-You are now ready to use this web application.use  userID: admin password: admin to login
+- You are now ready to use this web application
+	- use  userID: admin, password: admin to login
 ## Pythonanywhere link:
 Link for app: http://freeha123.pythonanywhere.com/
