@@ -5,7 +5,7 @@ The purpose of this repository is to implement a Web Appliation as follows:
 A basic Flask server that has a REST API, (to perform CRUD operations) two database table and Accompanying web interface, using AJAX calls, to perform these CRUD operations With authorization (logging in). hosted online (pythonanywhere)
 
 ## Repository
-gitignore
+- gitignore
 - README.md
 - LICENSE
 - ShopDAO.py
@@ -16,7 +16,38 @@ gitignore
 - templates
   - index.html
   - login.html
-<br>Shop database base has three tables
+<br>
+Shop database base has three tables
+CREATE TABLE Customer(
+	CustomerID INT NOT NULL AUTO_INCREMENT,
+   	FirstName VARCHAR(250) DEFAULT NULL,
+	LastName VARCHAR(250) DEFAULT NULL,
+   	Address VARCHAR(250) DEFAULT NULL,
+   	Email VARCHAR(250) DEFAULT NULL,
+   	PhoneNumber INT DEFAULT NULL,
+   	PRIMARY KEY (CustomerID)
+  );
+
+CREATE TABLE Orders(
+	OrderId INT NOT NULL AUTO_INCREMENT,
+	Product VARCHAR(250) DEFAULT NULL,
+	OrderDate varchar(250) DEFAULT '2020-12-31',
+	Category VARCHAR(250) DEFAULT NULL,
+	Customer_id INT NOT NULL,
+	PRIMARY KEY (OrderId),
+	CONSTRAINT FK_customer_order
+   	FOREIGN KEY (Customer_id)
+   	REFERENCES Customer(CustomerID)
+      	ON DELETE RESTRICT
+   );    
+
+
+CREATE TABLE Users(
+	userID INT NOT NULL AUTO_INCREMENT,
+   	name VARCHAR(250) DEFAULT NULL,
+   	password varchar(250) DEFAULT NULL,
+   	PRIMARY KEY (userID)
+   	);
 - customer
 - orders
 - users
