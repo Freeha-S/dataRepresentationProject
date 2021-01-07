@@ -16,7 +16,7 @@ gitignore
 - templates
   - index.html
   - login.html
-Shop database base has three tables
+<br>Shop database base has three tables
 - customer
 - orders
 - users
