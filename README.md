@@ -70,25 +70,25 @@ in order table customer ID is used as key that connect both tables
 
 Running this web application on your local machine:
 Prequisites
-anaconda installation Anaconda.
-MySQL.
+- anaconda installation Anaconda.
+- MySQL.
 
 ## Cloning the repository
 **create and use a copy of this repositiory on your local machine.**
 
-In this repository.
+- In this repository.
 Click on the green button "Code". Select "Clone with HTTPS". Copy the URL.
-navigate to your preferred directory (folder) where you like to keep the copy .
-Type git clone  https://github.com/Freeha-S/dataRepresentationProject.git ( this is the URL you have copied).
+- Navigate to your preferred directory (folder) where you like to keep the copy .
+- Type git clone  https://github.com/Freeha-S/dataRepresentationProject.git ( this is the URL you have copied).
 The repository is now installed.
-To install the necessary packages in the same folder/directory excecute the following: pip install -r requirements.txt
-Verify that the packages have been installed using command: pip freeze.
-To create database Use the initdb.sql to create the tables & insert data for testing in a database called phonedb.
-In dbconfiguration.py Enter your own database username & password here.
+-To install the necessary packages in the same folder/directory excecute the following: pip install -r requirements.txt
+- To check the packages have been installed using command: pip freeze.
+- To create database Use the initdb.sql to create the tables & insert data for testing in a database called phonedb.
+- In dbconfiguration.py Enter your own database username & password here.
 ## Running the app
-navigate to the the folder where you cloned this repository.
-In terminal execute this command: python server.py
-In your browser navigate to http://127.0.0.1:5000/
-You are now ready to use this web application.
+- Navigate to the the folder where you cloned this repository.
+- In terminal execute this command: python server.py
+- In your browser navigate to http://127.0.0.1:5000/
+You are now ready to use this web application.use  userID: admin password: admin to login
 ## Pythonanywhere link:
 Link for app: http://freeha123.pythonanywhere.com/
