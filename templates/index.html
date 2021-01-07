@@ -1,0 +1,800 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script  src="https://code.jquery.com/jquery-2.2.4.js"  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+  
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    
+    <title>Phone Fix Plus</title>
+    </head>
+
+<body>
+     <!-- Logged In As/Logout Button navbar-->
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>                        
+             </button>
+             <a class="navbar-brand">Phone Fix Plus</a>
+           </div>
+           <div class="collapse navbar-collapse" id="myNavbar">
+             <ul class="nav navbar-nav">
+               <li class="navbar-text">Welcome, | {{ name }} |</li>
+             </ul>
+             
+             <ul class="nav navbar-nav navbar-right">
+               <form id="logout-form" action="#">
+                   <input id="logout-button" type="submit" class="btn btn-danger navbar-btn" value="Logout" />
+               </form>
+             </ul>
+           </div>
+         </div>
+       </nav>
+     <hr>                   
+    <!-- Form for creating new and updating existing customer data -->
+   <div id="createUpdateCustomer" style="display:none">
+      <div style="width:500px; margin:0 auto;">
+         <h2 id="createCustomerLabel" class="h2">Create Customer</h2>
+         <h2 id="updateCustomerLabel" class="h2">Update Customer</h2>
+         <button onclick="showHome()" type="button" class="btn btn-primary">Home</button>
+         <button onclick="showCustomerDisplay()" type="button" class="btn btn-success">All Customers</button>
+         <table id="createUpdateCustomerForm" class="table table-dark">
+            <input type="hidden" name="id"/>
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">Details</th>
+                  <th scope="col">Input</th>
+               </tr>
+            </thead>
+            <tr>
+               <th scope="col">CustomerID</th>
+               <td><input type="text" class="form-control" id="CustomerID" name="CustomerID" placeholder="not available" readonly="readonly"></td>
+            </tr>
+            <tr>
+               <th scope="col">FirstName</th>
+               <td><input type="text" class="form-control" name="FirstName" placeholder="First Name" required></td>
+            </tr>
+            <tr>
+               <th scope="col">LastName</th>
+               <td><input type="text" class="form-control" name="LastName" placeholder="Last Name" required></td>
+            </tr>
+            <tr>
+               <th scope="col">Address</th>
+               <td><input type="text" class="form-control" name="Address" placeholder="Address" required></td>
+            </tr>
+            <tr>
+               <th scope="col">Email</th>
+               <td><input type="email" class="form-control" name="Email" placeholder="Email" required></td>
+            </tr>
+            <tr>
+               <th scope="col">PhoneNumber</th>
+               <td><input type="number" class="form-control" name="PhoneNumber" placeholder="PhoneNumber" required></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>
+                  <button id="createCustomer" onclick="doCreateCustomer()" type="button" class="btn btn-success">Create</button>
+                  <button id="updateCustomer" onclick="doUpdateCustomer()"type="button" class="btn btn-info">Update</button>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+
+   <!-- Form for creating new and updating existing Orders data -->
+   <div id="createUpdateOrder" style="display:none">
+      <div style="width:500px; margin:0 auto;">
+         <h2 id="createOrderLabel" class="h2">Create Order</h2>
+         <h2 id="updateOrderLabel" class="h2">Update Order</h2>
+         <button onclick="showHome()" type="button" class="btn btn-primary">Home</button>
+         <button onclick="showOrderDisplay()" type="button" class="btn btn-success">All Orders</button>
+         <table id="createUpdateOrderForm" class="table table-dark">
+            
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">Details</th>
+                  <th scope="col">Order Input</th>
+               </tr>
+            </thead>
+            <tr>
+               <th scope="col">OrderId</th>
+               <td><input type="text" class="form-control" id="OrderId"name="OrderId" placeholder="generate automatically" readonly="readonly"></td>
+            </tr>
+            <tr>
+               <th scope="col">Product</th>
+               <td><input type="text" class="form-control" name="Product" placeholder="Product name" required></td>
+            </tr>
+            <tr>
+               <th scope="col">OrderDate</th>
+               <td><input type="date" class="form-control" name="OrderDate" placeholder="Order Date" required></td>
+            </tr>
+            <tr>
+               <th scope="col">Category</th>
+               <td><input type="text" class="form-control" name="Category" placeholder="Category" required></td>
+            </tr>
+            <tr>
+               <th scope="col">Customer_Id</th>
+               <td><input type="number" class="form-control" name="Customer_Id" placeholder="Customer ID" required></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>
+                  <button id="createOrder" onclick="doCreateOrder()" type="button" class="btn btn-success">Create</button>
+                  <button id="updateOrder" onclick="doUpdateOrder()" type="button" class="btn btn-info">Update</button>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+
+   <!-- Table for displaying customer data -->
+   <div id="displayCustomers" style="display:none">
+      <div style="width:900px; margin:0 auto;">
+         <h2 class="h2">Customer</h2>
+         <button onclick="showHome()" type="button" class="btn btn-primary">Home</button>
+         <button onclick="showCustomerCreate()" type="button" class="btn btn-success">Create Customer</button>
+         <table id="customerTable" class="table table-dark">
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">CustomerID</th>
+                  <th scope="col">FirstName</th>
+                  <th scope="col">LastName</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">PhoneNumber</th>
+                  <th scope="col" colspan="2">Options</th>
+               </tr>
+            </thead>
+         </table>
+      </div>
+   </div>
+
+   <!-- Table for displaying Order data -->
+   <div id="displayOrder" style="display:none">
+      <div style="width:900px; margin:0 auto;">
+         <h2 class="h2">Orders</h2>
+         <button onclick="showHome()" type="button" class="btn btn-primary">Home</button>
+         <button onclick="showOrderCreate()" type="button" class="btn btn-success">Create Orders</button>
+         <table id="orderTable" class="table table-dark">
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">OrderId</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">OrderDate</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Customer_Id</th>
+                  <th scope="col" colspan="2">Options</th>
+               </tr>
+            </thead>
+         </table>
+      </div>
+   </div>
+
+   <!-- Table for displaying Home page -->
+   <div id="showHome">
+      <div style="width:900px; margin:0 auto;">
+         <h2 class="h2">Home</h2>
+         <table id="HomeTable" class="table table-dark ">
+            <tr>
+               <td>
+                  <!-- Link to customer display table -->
+                  <button onclick="showCustomerDisplay()" type="button" class="btn btn-success">Customers</button>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <!-- Link to Order display table -->
+                  <button onclick="showOrderDisplay()" type="button" class="btn btn-success">Orders</button>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <hr>
+   
+   <script>
+
+      logoutForm = document.getElementById("logout-form");
+      host = window.location.origin
+      logoutForm.action = host + "/logout";
+var row=0
+var o_row=0
+      function showCustomerDisplay() {
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "block"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "none"
+         document.getElementById('createUpdateOrder').style.display = "none"
+      }
+
+      function showCustomerCreate(){
+         clearCustomerForm()
+         
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "block"
+         document.getElementById('createUpdateOrder').style.display = "none"
+         // title
+         document.getElementById('createCustomerLabel').style.display = "block"
+         document.getElementById('updateCustomerLabel').style.display = "none"
+         // buttons
+         document.getElementById('createCustomer').style.display = "block"
+         document.getElementById('updateCustomer').style.display = "none"
+      }
+
+      function showCustomerUpdate(thisElem) {
+         var rowElement = thisElem.parentNode.parentNode;
+         var customer = readCustomerFromRow(rowElement)
+         row=rowElement
+         populateCustomerForm(customer)
+
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "block"
+         document.getElementById('createUpdateOrder').style.display = "none"
+         // title
+         document.getElementById('createCustomerLabel').style.display = "none"
+         document.getElementById('updateCustomerLabel').style.display = "block"
+         // buttons
+         document.getElementById('createCustomer').style.display = "none"
+         document.getElementById('updateCustomer').style.display = "block"
+      }
+
+      function readCustomerFromRow(rowElement) {
+         var customer ={}
+        customer.CustomerID  = rowElement.getAttribute('CustomerID')
+        customer.FirstName = rowElement.cells[1].firstChild.textContent
+        customer.LastName = rowElement.cells[2].firstChild.textContent
+        customer.Address = rowElement.cells[3].firstChild.textContent
+        customer.Email= rowElement.cells[4].firstChild.textContent
+        customer.PhoneNumber = rowElement.cells[5].firstChild.textContent
+
+        //parseInt(rowElement.cells[3].firstChild.textContent,10)
+        return customer
+      }
+      function populateCustomerForm(customer) {
+         var form = document.getElementById('createUpdateCustomerForm')
+
+         form.querySelector('input[name="CustomerID"]').value = customer.CustomerID
+         form.querySelector('input[name="CustomerID"]').disabled = true
+         form.querySelector('input[name="FirstName"]').value= customer.FirstName
+         form.querySelector('input[name="LastName"]').value= customer.LastName
+         form.querySelector('input[name="Address"]').value= customer.Address
+         form.querySelector('input[name="Email"]').value= customer.Email
+         form.querySelector('input[name="PhoneNumber"]').value= customer.PhoneNumber
+
+      }
+      function clearCustomerForm() {
+         var form = document.getElementById('createUpdateCustomerForm')
+
+         form.querySelector('input[name="CustomerID"]').value = ''
+         form.querySelector('input[name="CustomerID"]').disabled = true
+
+         form.querySelector('input[name="FirstName"]').value=''
+         form.querySelector('input[name="LastName"]').value=''
+         form.querySelector('input[name="Address"]').value =''
+         form.querySelector('input[name="Email"]').value =''
+         form.querySelector('input[name="PhoneNumber"]').value=''
+      }
+
+      function doUpdateCustomer() {
+         var customer = getCustomerFromUpdateForm()
+         var table =document.getElementsByName
+         if (validateCustomerForm(customer) == 1) {
+            //updateCustomerServer(customer)  
+         var rowElement = row
+         //document.getElementById(customer.CustomerID);
+        
+        //alert(rowElement) //var customer = getCustomerFromRow(rowElement);
+        //populateFormWithCustomer(customer);
+        //customer=getCustomerFromForm
+        updateCustomerAjax(customer);
+        setCustomerInRow(rowElement,customer);
+       
+        clearCustomerForm();
+        showCustomerDisplay();       
+         }
+      }
+      function setCustomerInRow(rowElement, customer){
+        rowElement.cells[0].firstChild.textContent= customer.CustomerID  
+        rowElement.cells[1].firstChild.textContent= customer.FirstName
+        rowElement.cells[2].firstChild.textContent= customer.LastName
+        rowElement.cells[3].firstChild.textContent= customer.Address
+        rowElement.cells[4].firstChild.textContent= customer.Email
+        rowElement.cells[5].firstChild.textContent= customer.PhoneNumber
+      }
+      function updateCustomerAjax(customer){
+        host = window.location.origin
+         console.log(JSON.stringify(customer));
+        $.ajax({
+            "url": host +"/customer/"+encodeURI(customer.CustomerID),
+            "method":"PUT",
+            "data":JSON.stringify(customer),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+               console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+      function updateCustomerServer(customer) {
+         // ajax updateCustomer
+         host = window.location.origin
+         $.ajax({
+            url: host + "/customer/" + customer.CustomerID,
+            data: JSON.stringify(customer),
+            method: "PUT",
+            dataType: "JSON",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+               console.log(result)
+               updateCustomerTableRow(result)
+               showCustomerDisplay()
+               clearCustomerForm()
+            },
+            error: function (xhr, status, error) {
+               console.log("error" + error)
+            }
+         })
+      }
+
+      function updateCustomerTableRow(customer) {
+         var rowElement = document.getElementById(customer.CustomerID)
+         //rowElement.cells[0].firstChild.textContent= customer.CustomerID  
+         rowElement.cells[1].firstChild.textContent= customer.FirstName
+         rowElement.cells[2].firstChild.textContent= customer.LastName
+         rowElement.cells[3].firstChild.textContent= customer.Address
+         rowElement.cells[4].firstChild.textContent= customer.Email
+         rowElement.cells[5].firstChild.textContent= customer.PhoneNumber
+         //console.log("updating customer table")
+      }
+
+      function doCreateCustomer() {
+         var customer = getCustomerFromForm()
+         if (validateCustomerForm(customer) == 1) {
+            // ajax createCustomer
+            host = window.location.origin
+            $.ajax({
+               url: host + '/customer',
+               data: JSON.stringify(customer),
+               method: 'POST',
+               datatype: 'JSON',
+               contentType: "application/json; charset=utf-8",
+               success: function (result) {
+                  console.log("Customer " + result + " added")
+                  customer.CustomerID = result.CustomerID
+                  addCustomertoTable(customer)
+                  showCustomerDisplay()
+                  clearCustomerForm()
+               },
+               error: function (xhr, status, error) {
+                  console.log("error " + error)
+               }
+            })
+         }
+
+      }
+
+      function doCustomerDelete(thisElem){
+         var tableElement = document.getElementById('customerTable');
+         var rowElement = thisElem.parentNode.parentNode;
+         var index = rowElement.rowIndex;
+         // CustomerID is customer table row id omitting the first character 'd'
+         var customer = rowElement.getAttribute("CustomerID");
+         // ajax deleteCustomer
+         host = window.location.origin
+         $.ajax({
+            url: host + "/customer/"+customer,
+            method:"DELETE",
+            dateType:"JSON",
+            success:function(result){
+               console.log(result)
+               if (result.done == false){
+                  alert("WARNING: Cannot delete Customer with associated Order!")
+               } else {
+                  tableElement.deleteRow(index);
+                  console.log("Customers " + customer + " deleted")
+               }
+            },
+            error:function(xhr,status,error){
+               console.log(error)
+            }
+         })
+      }
+
+      function showOrderDisplay() {
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "block"
+         document.getElementById('createUpdateCustomer').style.display = "none"
+         document.getElementById('createUpdateOrder').style.display = "none"
+      }
+
+      function showOrderCreate() {
+         clearOrderForm()
+
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "none"
+         document.getElementById('createUpdateOrder').style.display = "block"
+         // title
+         document.getElementById('createOrderLabel').style.display = "block"
+         document.getElementById('updateOrderLabel').style.display = "none"
+         // buttons
+         document.getElementById('createOrder').style.display = "block"
+         document.getElementById('updateOrder').style.display = "none"
+      }
+
+      function showOrderUpdate(thisElem) {
+         var rowElement = thisElem.parentNode.parentNode;
+         var Order = readOrderFromRow(rowElement)
+         populateOrderForm(Order)
+         o_row=rowElement
+
+         document.getElementById('showHome').style.display = "none"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "none"
+         document.getElementById('createUpdateOrder').style.display = "block"
+         // title
+         document.getElementById('createOrderLabel').style.display = "none"
+         document.getElementById('updateOrderLabel').style.display = "block"
+         // buttons
+         document.getElementById('createOrder').style.display = "none"
+         document.getElementById('updateOrder').style.display = "block"
+      }
+
+      function readOrderFromRow(rowElement) {
+         var order = {}
+         // OrderId is Order table
+         order.OrderId = rowElement.getAttribute("OrderId")
+         order.Product = rowElement.cells[1].firstChild.textContent
+         order.OrderDate = rowElement.cells[2].firstChild.textContent
+         order.Category = rowElement.cells[3].firstChild.textContent
+         order.Customer_Id = rowElement.cells[4].firstChild.textContent
+         // console.log(order.OrderId)
+         return order
+      }
+
+      function populateOrderForm(order) {
+         var form = document.getElementById('createUpdateOrderForm')
+
+         form.querySelector('input[name="OrderId"]').value = order.OrderId
+         form.querySelector('input[name="OrderId"]').disabled = true
+
+         form.querySelector('input[name="Product"]').value = order.Product
+         form.querySelector('input[name="OrderDate"]').value = order.OrderDate
+         form.querySelector('input[name="Category"]').value = order.Category
+         form.querySelector('input[name="Customer_Id"]').value = order.Customer_Id
+      }
+      function clearOrderForm() {
+         var form = document.getElementById('createUpdateOrderForm')
+
+         form.querySelector('input[name="OrderId"]').value = ''
+         form.querySelector('input[name="OrderId"]').disabled = true
+
+         form.querySelector('input[name="Product"]').value = ''
+         form.querySelector('input[name="OrderDate"]').value = ''
+         form.querySelector('input[name="Category"]').value = ''
+         form.querySelector('input[name="Customer_Id"]').value = ''
+      }
+      function doUpdateOrder1(){
+        //var customer = getCustomerFromForm();
+        var order = getOrderFromUpdateForm();
+        console.log(JSON.stringify(order))
+        //https://stackoverflow.com/a/24353831 TO CHECK input is number
+        //var rowElement = document.getElementById(book.id);
+        var rowElement = o_row
+        //document.getElementById(order.OrderId);
+        //var customer = getCustomerFromRow(rowElement);
+        //populateFormWithCustomer(customer);
+        //customer=getCustomerFromForm
+        updateOrderAjax(order);
+        updateOrderTableRow(rowElement,order);
+        showOrderDisplay()
+        clearOrderForm()
+        showViewAll();
+    }
+
+      function doUpdateOrder() {
+         var order = getOrderFromUpdateForm()
+         // console.log(order)
+         if (validateOrderForm(order) == 1) {
+            updateOrderServer(order)       
+         }
+      }
+
+      function updateOrderServer(order) {
+         // ajax updateOrder
+         host = window.location.origin
+         $.ajax({
+            url: host + "/orders/" + order.OrderId,
+            data: JSON.stringify(order),
+            method: "PUT",
+            dataType: "JSON",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+               console.log(result)
+               updateOrderTableRow(order)
+               showOrderDisplay()
+               clearOrderForm()
+            },
+            error: function (xhr, status, error) {
+               console.log("error" + error)
+               // NOTE: CustomerID has to exist to assign an Ordere to a CustomerID
+               alert("WARNING: INPUT ERROR Customer ID not exist!")
+            }
+         })
+      }
+
+      function updateOrderTableRow(order) {
+         var rowElement=o_row
+     
+         
+         rowElement.cells[1].firstChild.textContent = order.Product
+         rowElement.cells[2].firstChild.textContent = order.OrderDate
+         rowElement.cells[3].firstChild.textContent = order.Category
+         rowElement.cells[4].firstChild.textContent = order.Customer_Id
+         console.log("updating order table")
+      }
+
+      function doCreateOrder() {
+         var order = getOrderFromForm()
+         if (validateOrderForm(order) == 1) {
+            // ajax createOrder
+            host = window.location.origin
+            $.ajax({
+               url: host + '/orders',
+               data: JSON.stringify(order),
+               method: 'POST',
+               datatype: 'JSON',
+               contentType: "application/json; charset=utf-8",
+               success: function (result) {
+                  console.log("Orders " + result + " created")
+                  order.OrderId = result.OrderId
+                  addOrdertoTable(order)
+                  showOrderDisplay()
+                  clearOrderForm()
+               },
+               error: function (xhr, status, error) {
+                  console.log("error " + error)
+                  // NOTE: CustomerID has to exist to assign an order to a CustomerID
+                  alert("WARNING: INPUT ERROR Customer ID not found!")
+               }
+            })
+         }
+      }
+
+      function doOrderDelete(thisElem){
+         var tableElement = document.getElementById('orderTable');
+         var rowElement = thisElem.parentNode.parentNode;
+         var index = rowElement.rowIndex;
+         // OrderId is order table row id omitting the first character 'e'
+         var order = rowElement.getAttribute("OrderId")
+         // ajax deleteOrder
+         host = window.location.origin
+         $.ajax({
+            url: host + "/orders/"+ order,
+            method:"DELETE",
+            dateType:"JSON",
+            success:function(result){
+               tableElement.deleteRow(index);
+               console.log("Orders " + order + " deleted")
+            },
+            error:function(xhr,status,error){
+               console.log(error)
+            }
+         })
+      }
+
+      function showHome() {
+         document.getElementById('showHome').style.display = "block"
+         document.getElementById('displayCustomers').style.display = "none"
+         document.getElementById('displayOrder').style.display = "none"
+         document.getElementById('createUpdateCustomer').style.display = "none"
+         document.getElementById('createUpdateOrder').style.display = "none"
+      }
+
+      function getCustomerFromForm(){
+         var form = document.getElementById('createUpdateCustomerForm')
+         var customer = {}
+        //customer.CustomerID = form.querySelector('input[name="CustomerID"]').value
+        //customer.CustomerID=4
+        customer.FirstName = form.querySelector('input[name="FirstName"]').value
+        customer.LastName = form.querySelector('input[name="LastName"]').value
+        customer.Address = form.querySelector('input[name="Address"]').value
+        customer.Email = form.querySelector('input[name="Email"]').value
+        customer.PhoneNumber= form.querySelector('input[name="PhoneNumber"]').value
+        //parseInt(form.querySelector('input[name="Price"]').value,10)
+        console.log(JSON.stringify(customer))
+        return customer
+      }
+      function getCustomerFromUpdateForm(){
+         var form = document.getElementById('createUpdateCustomerForm')
+         var customer = {}
+        customer.CustomerID = form.querySelector('input[name="CustomerID"]').value
+        //customer.CustomerID=4
+        customer.FirstName = form.querySelector('input[name="FirstName"]').value
+        customer.LastName = form.querySelector('input[name="LastName"]').value
+        customer.Address = form.querySelector('input[name="Address"]').value
+        customer.Email = form.querySelector('input[name="Email"]').value
+        customer.PhoneNumber= form.querySelector('input[name="PhoneNumber"]').value
+        //parseInt(form.querySelector('input[name="Price"]').value,10)
+        console.log(JSON.stringify(customer))
+        return customer
+      }
+
+      function validateCustomerForm(c){
+         
+         if (c.FirstName.length == 0 ||c.LastName.length == 0 || c.Address.length == 0||c.Email.length == 0 || Number.isNaN(c.PhoneNumber) == true ){
+            alert("WARNING: INPUT ERROR Blank form field submitted!")
+            return 0
+         }
+         return 1
+      }
+
+      function getOrderFromUpdateForm(){
+         var form = document.getElementById('createUpdateOrderForm')
+         var order = {}
+         order.OrderId = form.querySelector('input[name="OrderId"]').value
+         order.Product = form.querySelector('input[name="Product"]').value
+         order.OrderDate = form.querySelector('input[name="OrderDate"]').value
+         order.Category = form.querySelector('input[name="Category"]').value
+         order.Customer_Id = parseInt(form.querySelector('input[name="Customer_Id"]').value)
+         // console.log(order)
+         return order
+      }
+      function getOrderFromForm(){
+         var form = document.getElementById('createUpdateOrderForm')
+         var order = {}
+         //order.OrderId = parseInt(form.querySelector('input[name="OrderId"]').value)
+         order.Product = form.querySelector('input[name="Product"]').value
+         order.OrderDate = form.querySelector('input[name="OrderDate"]').value
+         order.Category = form.querySelector('input[name="Category"]').value
+         order.Customer_Id = parseInt(form.querySelector('input[name="Customer_Id"]').value)
+         console.log(order)
+         return order
+      }
+
+      function validateOrderForm(ord){
+         // Check if any orders form fields are Orderty
+         if (ord.Product.length == 0 || ord.OrderDate == ""|| ord.Category.length == 0|| Number.isNaN(ord.Customer_Id) == true){
+            alert("WARNING: INPUT ERROR Blank Order form field submitted!")
+            return 0
+         }
+         return 1
+      }
+
+      function populateCustomerTable(){
+         // ajax getAllCustomer
+         host = window.location.origin
+         $.ajax({
+            url: host + '/customer',
+            method: 'GET',
+            datatype: 'JSON',
+            success: function (results) {
+               for (customer of results) {
+                  addCustomertoTable(customer)
+               }
+            },
+            error: function (xhr, status, error) {
+               console.log("error " + error + " code:" + status)
+            }
+         })
+      }
+
+      function populateOrderTable(){
+         // ajax getAllOrder
+         host = window.location.origin
+         $.ajax({
+            url: host + '/orders',
+            method: 'GET',
+            datatype: 'JSON',
+            success: function (results) {
+               for (order of results) {
+                  addOrdertoTable(order)
+               }
+            },
+            error: function (xhr, status, error) {
+               console.log("error " + error + " code:" + status)
+            }
+         })
+      }
+
+      function addCustomertoTable(customer){
+         // console.log("add to customer table working")
+         var tableElem = document.getElementById('customerTable')
+         var rowElement = tableElem.insertRow(-1)
+         
+         rowElement.setAttribute('CustomerID',customer.CustomerID)
+         var cell1 = rowElement.insertCell(0);
+         cell1.innerHTML = customer.CustomerID
+         var cell2 = rowElement.insertCell(1);
+         cell2.innerHTML = customer.FirstName
+         var cell3 = rowElement.insertCell(2);
+         cell3.innerHTML = customer.LastName
+         var cell4 = rowElement.insertCell(3);
+         cell4.innerHTML = customer.Address
+         var cell5 = rowElement.insertCell(4);
+         cell5.innerHTML = customer.Email
+         var cell6 = rowElement.insertCell(5);
+         cell6.innerHTML = customer.PhoneNumber
+         var cell7 = rowElement.insertCell(6);
+         cell7.innerHTML = '<button onclick="showCustomerUpdate(this)"  type="button" class="btn btn-info">Update</button>'
+         var cell8 = rowElement.insertCell(7);
+         cell8.innerHTML = '<button onclick="doCustomerDelete(this)" type="button" class="btn btn-danger">Delete</button>'
+      }
+
+      function addOrdertoTable(order){
+         // console.log("add to order table working")
+         var tableElem = document.getElementById('orderTable')
+         var rowElement = tableElem.insertRow(-1)
+         rowElement.setAttribute('OrderId',order.OrderId)
+         var cell1 = rowElement.insertCell(0);
+         cell1.innerHTML = order.OrderId
+         var cell2 = rowElement.insertCell(1);
+         cell2.innerHTML = order.Product
+         var cell3 = rowElement.insertCell(2);
+         cell3.innerHTML = order.OrderDate
+         var cell4 = rowElement.insertCell(3);
+         cell4.innerHTML = order.Category
+         var cell5 = rowElement.insertCell(4);
+         cell5.innerHTML = order.Customer_Id
+         var cell6 = rowElement.insertCell(5);
+         cell6.innerHTML = '<button onclick="showOrderUpdate(this)"  type="button" class="btn btn-info">Update</button>'
+         var cell7 = rowElement.insertCell(6);
+         cell7.innerHTML = '<button onclick="doOrderDelete(this)" type="button" class="btn btn-danger">Delete</button>'
+      }
+      function updateOrderAjax(order){
+        host = window.location.origin
+         console.log(JSON.stringify(order));
+        $.ajax({
+            "url": host +"/orders/"+encodeURI(order.OrderId),
+            "method":"PUT",
+            "data":JSON.stringify(order),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+               console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
+      populateCustomerTable()
+      populateOrderTable()
+
+   </script>
+   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+      <div class="container text-center">
+         <p>Freha Saleem</p>
+        <small>Copyright © Phone Fix Plus</small>
+      </div>
+    </footer>
+</body>
+
+</html>
