@@ -19,7 +19,7 @@ Link for app: http://freeha123.pythonanywhere.com/
   - index.html
   - login.html
 
-### Shop database base has three tables
+### Database has three tables
 
 - Customer
 ~~~~sql
@@ -57,17 +57,23 @@ CREATE TABLE Users(
    	PRIMARY KEY (userID)
    	);
 ~~~~
-Users table is used for authentication<br>
-**usedID: admin **
+Users table is used for authentication<br/>
+In Orders table CustomerID is used as key that connect both tables
+## App Detail
+On the Main screen
+**usedID: admin**
 **password: admin**
-used to login the app
-where you can
+*used to login the app*
+<br/>
+after logging in you can
 - View (Customers/Orders)list from the database
 - Create a new (Customer/Order) -- add to the database
+	- New order can be created only for existing customer
 - Update existing (Customer /Order)
 - Delete existing (Customer/Order)
+	- The customer with existing order cannot be deleted
 <br/>
-In Orders table CustomerID is used as key that connect both tables
+
 
 ### To Run this web application on your local machine:
 #### Prequisites
