@@ -18,7 +18,7 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
   - login.html
 <br>
 Shop database base has three tables
-# Code Block #
+### Code Block
 ~~~~CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
    	FirstName VARCHAR(250) DEFAULT NULL,
