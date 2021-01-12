@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, request, abort,render_template,session,redirect,url_for
 from  ShopDAO import ShopDAO
-#from flask_cors import CORS
+
 #app = Flask(__name__, static_url_path='', static_folder='.')
 app = Flask(__name__)
 app.secret_key = 'abcd1234yturKLMH67nh'
-#CORS(app)
-#app = Flask(__name__)
 
 #@app.route('/')
 #def index():
@@ -14,8 +12,8 @@ app.secret_key = 'abcd1234yturKLMH67nh'
 def index():
     if not 'username' in session:
       return redirect(url_for('login'))
-#, title='Index', name = session['username']
-    return render_template('index.html', title='Index', name = session['username'])
+
+    return render_template('index.html',name = session['username'])
     
 @app.route('/logout')
 def logout():
@@ -32,6 +30,7 @@ def login():
             foundUser = ShopDAO.findUserByUserID(userID)
             #return jsonify(foundUser)
             if foundUser:
+            #source: https://flask.palletsprojects.com/en/1.1.x/logging/
                     app.logger.info('User found')
                     # compare user password
                     if password == foundUser["password"]:
@@ -43,7 +42,7 @@ def login():
                         app.logger.info('Password does not match for user')
                         return render_template('login.html', error='Incorrect password: Please try again')
                         
-                    # Otherwise               
+                    # if not user found
             app.logger.info('User not found')
             return render_template('login.html', error="User not found")
         else:

@@ -1,4 +1,4 @@
-# Company Database Access Object (DAO) for user login and database CRUD operations
+#Shop Database Access Object (DAO) for user login and database CRUD operations
 # Provides an interface between the flask server and the sql database
 
 # import module and database access configuration file
@@ -67,7 +67,7 @@ class ShopDAO:
       cursor = self.getConnection()
       sql = "insert into Users (Name, Password) values (%s,%s)"
       values = [
-         # u['userID'], - auto-increment
+         # user['userID'], - auto-increment
          user['name'],
          user['password'],
       ]
@@ -280,12 +280,12 @@ class ShopDAO:
    # convert user into Dictionary
    def convertUserToDict(self, result):
       colnames = ['userID', 'name', 'password']
-      u = {}
+      user = {}
       if result:
          for i, colName in enumerate(colnames):
             value = result[i]
-            u[colName] = value
-      return u
+            user[colName] = value
+      return user
 
-# Create instance of the DOA class
+# Create instance of the DAO class
 ShopDAO = ShopDAO()
