@@ -2,7 +2,9 @@
 ## Lecturer: Andrew Beatty
 ## Student: Freha Saleem
 The purpose of this repository is to implement a Web Appliation as follows:
-A basic Flask server that has a REST API, (to perform CRUD operations) two database table and Accompanying web interface, using AJAX calls, to perform these CRUD operations With authorization (logging in). hosted online (pythonanywhere)
+- A basic Flask server that has a REST API, (to perform CRUD operations) on two database table and accompanying web interface. Using AJAX calls, to perform these CRUD operations with authorization (logging in). hosted online at (pythonanywhere)
+## Pythonanywhere link:
+Link for app: http://freeha123.pythonanywhere.com/
 
 ## Repository
 - gitignore
@@ -16,10 +18,10 @@ A basic Flask server that has a REST API, (to perform CRUD operations) two datab
 - templates
   - index.html
   - login.html
-<br>
-Shop database base has three tables
-### Code Block
 
+### Database has three tables
+
+- Customer
 ~~~~sql
 CREATE TABLE Customer(
 	CustomerID INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +33,7 @@ CREATE TABLE Customer(
    	PRIMARY KEY (CustomerID)
   );
 ~~~~
-
+- Orders
 ~~~~sql
 CREATE TABLE Orders(
 	OrderId INT NOT NULL AUTO_INCREMENT,
@@ -46,7 +48,7 @@ CREATE TABLE Orders(
       	ON DELETE RESTRICT
    ); 
 ~~~~  
-
+- Users
 ~~~~sql
 CREATE TABLE Users(
 	userID INT NOT NULL AUTO_INCREMENT,
@@ -55,21 +57,26 @@ CREATE TABLE Users(
    	PRIMARY KEY (userID)
    	);
 ~~~~
-- customer
-- orders
-- users (user table is used for authentication)<br>
-usedID: admin 
-password: admin
-used to login the app
-where
-- View customers,Orders list from the database
-- Create a new customer , new order(add to the database)
-- Update existing customer /order
-- delete existing customer/order
-in order table customer ID is used as key that connect both tables
+Users table is used for authentication<br/>
+In Orders table CustomerID is used as key that connect both tables
+## App Detail
+On the Main screen
+**usedID: admin**
+**password: admin**
+*used to login the app*
+<br/>
+after logging in you can
+- View (Customers/Orders)list from the database
+- Create a new (Customer/Order) -- add to the database
+	- New order can be created only for existing customer
+- Update existing (Customer /Order)
+- Delete existing (Customer/Order)
+	- The customer with existing order cannot be deleted
+<br/>
 
-Running this web application on your local machine:
-Prequisites
+
+### To Run this web application on your local machine:
+#### Prequisites
 - anaconda installation Anaconda.
 - MySQL.
 
@@ -89,6 +96,7 @@ The repository is now installed.
 - Navigate to the the folder where you cloned this repository.
 - In terminal execute this command: python server.py
 - In your browser navigate to http://127.0.0.1:5000/
-You are now ready to use this web application.use  userID: admin password: admin to login
+- You are now ready to use this web application
+	- use  userID: admin, password: admin to login
 ## Pythonanywhere link:
 Link for app: http://freeha123.pythonanywhere.com/
